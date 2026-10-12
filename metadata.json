@@ -1,0 +1,6 @@
+{
+  "name": "Telegram Auto-Reply Bot Fixer & Repository Package",
+  "description": "Complete fixed source code and one-click ZIP download for Telegram group auto-reply bot with privacy mode fixes, group triggers, and deploy configs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
