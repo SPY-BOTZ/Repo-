@@ -670,12 +670,45 @@ python3 bot.py
 *$py.class
 *.session
 *.session-journal
-.env
 .venv
 env/
 venv/
 Logs.txt
 userbot_config.json
+`
+  },
+  {
+    path: '.env',
+    name: '.env',
+    category: 'config',
+    description: 'Direct repository environment variables file (Aap repo me daal kar direct GitHub push kar sakte hain)',
+    content: `# Telegram Auto-Reply Userbot Configuration
+# Aap yahan fill karke GitHub me push kar sakte hain YA Koyeb environment me daal sakte hain!
+
+STRING_SESSION=""
+API_ID="12345678"
+API_HASH="your_api_hash_here"
+REPLY_TEXT="Hello {mention}! Main is group me auto-reply ke liye active hoon. Join our channel or DM me directly! ✨"
+DELETE_TIME=30
+AUTO_REPLY_MODE=all
+COOLDOWN_SECONDS=5
+GROUP_AUTO_REPLY=True
+PORT=8080
+`
+  },
+  {
+    path: '.env.example',
+    name: '.env.example',
+    category: 'config',
+    description: 'Example environment template file.',
+    content: `STRING_SESSION="your_pyrogram_string_session"
+API_ID=12345678
+API_HASH="your_api_hash"
+REPLY_TEXT="Hello {mention}! Main is group me auto-reply ke liye active hoon."
+DELETE_TIME=30
+AUTO_REPLY_MODE=all
+PORT=8080
+GROUP_AUTO_REPLY=True
 `
   },
   {

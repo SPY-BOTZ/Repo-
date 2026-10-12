@@ -11,6 +11,7 @@ import { ChatSimulator } from './components/ChatSimulator';
 import { RuleManager, TriggerRule } from './components/RuleManager';
 import { FileViewer } from './components/FileViewer';
 import { DeployGuide } from './components/DeployGuide';
+import { EnvConfigurator } from './components/EnvConfigurator';
 import { INITIAL_TRIGGER_RULES, BOT_FILES } from './data/botFiles';
 import {
   Download,
@@ -20,6 +21,7 @@ import {
   FileCode,
   MessageSquare,
   Sliders,
+  Settings,
   CheckCircle2,
   ExternalLink
 } from 'lucide-react';
@@ -27,7 +29,7 @@ import {
 export default function App() {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [rules, setRules] = useState<TriggerRule[]>(INITIAL_TRIGGER_RULES);
-  const [activeTab, setActiveTab] = useState<'simulator' | 'rules' | 'files' | 'deploy'>('simulator');
+  const [activeTab, setActiveTab] = useState<'simulator' | 'env' | 'rules' | 'files' | 'deploy'>('simulator');
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
@@ -55,7 +57,19 @@ export default function App() {
             }`}
           >
             <MessageSquare className="w-4 h-4" />
-            <span>Group Chat Simulator</span>
+            <span>Group Chat & 30s Delete Simulator</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('env')}
+            className={`flex items-center gap-2 px-4 py-3 text-sm font-semibold border-b-2 transition-all whitespace-nowrap ${
+              activeTab === 'env'
+                ? 'border-amber-500 text-amber-400 bg-amber-500/5'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-700'
+            }`}
+          >
+            <Settings className="w-4 h-4" />
+            <span>Repo .env / Koyeb Configurator</span>
           </button>
 
           <button
@@ -99,8 +113,12 @@ export default function App() {
         {activeTab === 'simulator' && (
           <div>
             <ChatSimulator rules={rules} />
-            <RuleManager rules={rules} onUpdateRules={setRules} />
+            <EnvConfigurator />
           </div>
+        )}
+
+        {activeTab === 'env' && (
+          <EnvConfigurator />
         )}
 
         {activeTab === 'rules' && (
@@ -119,7 +137,7 @@ export default function App() {
       {/* Footer */}
       <footer className="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-500">
         <p>
-          Telegram Group Auto-Reply Bot Fixer • Configured for Pyrofork 2.3.45 & Render / Heroku Deployment.
+          Telegram Auto-Reply Userbot • Pyrofork 2.3.45 • 30-Second Auto-Delete • Koyeb & Repo .env Ready.
         </p>
       </footer>
 
