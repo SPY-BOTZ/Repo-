@@ -12,6 +12,7 @@ interface UserEnvState {
   autoReplyMode: string;
   port: string;
   groupAutoReply: string;
+  authGroups: string;
 }
 
 export const EnvConfigurator: React.FC = () => {
@@ -23,7 +24,8 @@ export const EnvConfigurator: React.FC = () => {
     deleteTime: '30',
     autoReplyMode: 'all',
     port: '8080',
-    groupAutoReply: 'True'
+    groupAutoReply: 'True',
+    authGroups: ''
   });
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -48,6 +50,7 @@ DELETE_TIME=${env.deleteTime || '30'}
 AUTO_REPLY_MODE=${env.autoReplyMode || 'all'}
 PORT=${env.port || '8080'}
 GROUP_AUTO_REPLY=${env.groupAutoReply || 'True'}
+AUTH_GROUPS="${env.authGroups}"
 `;
   };
 
@@ -222,6 +225,22 @@ GROUP_AUTO_REPLY=${env.groupAutoReply || 'True'}
             />
             <span className="text-[10px] text-slate-500 mt-1 block">
               my.telegram.org se mila API Hash code.
+            </span>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-300 mb-1">
+              AUTH_GROUPS (Konsa Group Pe Reply Jayega?)
+            </label>
+            <input
+              type="text"
+              value={env.authGroups}
+              onChange={(e) => setEnv({ ...env, authGroups: e.target.value })}
+              placeholder="Khali chhod dein (HAR GROUP ke liye) ya ID daalein (e.g. -1001234567890)"
+              className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 font-mono"
+            />
+            <span className="text-[10px] text-emerald-400 mt-1 block font-medium">
+              💡 Khali chhodenge toh jis-jis group me aapka account add hai, un SABHI me reply karega!
             </span>
           </div>
         </div>
